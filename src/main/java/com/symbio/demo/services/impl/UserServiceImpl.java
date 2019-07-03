@@ -2,13 +2,19 @@ package com.symbio.demo.services.impl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.symbio.demo.domain.business.models.Account;
 import com.symbio.demo.domain.business.repositories.AccountRepo;
+import com.symbio.demo.domain.common.models.User;
 import com.symbio.demo.domain.common.repositories.UserRepo;
 import com.symbio.demo.services.UserService;
 
@@ -28,15 +34,15 @@ public class UserServiceImpl implements UserService {
     @Autowired
     @Qualifier("secondaryJdbcTemplate")
     protected JdbcTemplate commonJdbcTemplate;
-
+    
 	@Override
 	public Object findById(Long id) {
-		return accountRepo.findById(id).get();
+	    return accountRepo.findAll();
 	}
 
 	@Override
 	public Object findDefaultById(Long id) {
-		return userRepo.findById(id).get();
+        return userRepo.findAll();
 	}
 
 	@Override
