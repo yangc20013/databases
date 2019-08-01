@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
-import com.symbio.demo.domain.mongodb.repositories.TaaaRepo;
+import com.symbio.demo.domain.business.repositories.StudentRepo;
+import com.symbio.demo.domain.mongodb.repositories.SiteDataRepo;
 import com.symbio.demo.services.UserService;
 
 @RequestMapping(value = "/demo")
@@ -25,8 +26,16 @@ public class DemoController {
     @Autowired
     private MongoTemplate mongoTemplate;
     @Autowired
-    private TaaaRepo aRepo;
+    private SiteDataRepo aRepo;
+    
+    @Autowired
+    private StudentRepo studentRepo;
 
+    @RequestMapping(value = "/test5", method = RequestMethod.GET)
+    public ResponseEntity<Object> test5() {
+        return new ResponseEntity<>(studentRepo.findAll(), HttpStatus.OK);
+    }
+    
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
     public ResponseEntity<Object> test1() {
         return new ResponseEntity<>(userService.findById(1l), HttpStatus.OK);

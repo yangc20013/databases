@@ -41,8 +41,7 @@ public class SecondaryConfig {
 	private JpaProperties jpaProperties;
 
 	private Map<String, String> getVendorProperties(DataSource dataSource) {
-//		return jpaProperties.getProperties();
-      return jpaProperties.getHibernateProperties(dataSource);
+		return jpaProperties.getProperties();
 	}
 
 	@Bean(name = "transactionManagerSecondary")
